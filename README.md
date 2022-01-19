@@ -8,10 +8,11 @@ https://www.biorxiv.org/content/10.1101/2021.10.30.466578v1
 -	‘R’ software environment (version 4.0.4)
 
 ## Installation guide
-No installation required. Download the data from https://doi.org/10.5281/zenodo.5877753 into the "data" folder.
-All code should run in <1min.
+No installation required. All code should run in <1min.
 
 ## Instructions and demo
+Download the data from https://doi.org/10.5281/zenodo.5877753 into the "data" folder.
+
 Running the scripts named “Fig” will produce the corresponding figure from the manuscript.
 
 Example: “Fig5_a.m” will plot Figure 5a, showing spiking example traces from area V1 and V6.
