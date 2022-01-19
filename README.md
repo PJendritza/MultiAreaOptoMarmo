@@ -1,5 +1,5 @@
 # MultiAreaOptoMarmo
-Code and data to reproduce figures from our manuscript "Multi-area recordings and optogenetics in the awake, behaving marmoset".
+Code to reproduce figures from our manuscript "Multi-area recordings and optogenetics in the awake, behaving marmoset".
 https://www.biorxiv.org/content/10.1101/2021.10.30.466578v1
 
 ## Software requirements
