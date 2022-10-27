@@ -2,7 +2,6 @@ function [ahOri] = oriTuningSubplot(tr, clu, iCluInd, trSel_yell, startBinT, end
 %UNTITLED6 Summary of this function goes here
 %   Detailed explanation goes here
 
-addpath /mnt/gs/department1/Marmosets/Code/CircStat2012a/
 
 % orientatin tuning analysis
 
@@ -73,14 +72,14 @@ end
 plot(ori,sua_cond,'k.')
 
 ylabel('spks/s')
-% xlabel('Orientation (Â°)')
+% xlabel('Orientation (°)')
 xlim([0 180])
 box off
 set(gcf,'Color','w')
 
 ahOri = gca;
 ahOri.XAxis.TickValues = [0 90 180];
-xtickformat('%.0fÂ°')
+xtickformat('%.0f°')
 ahOri.Position = [0.5842    0.6650    0.0483    0.0463];
 ahOri.FontSize = 6;
 

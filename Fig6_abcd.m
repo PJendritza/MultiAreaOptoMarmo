@@ -1,9 +1,10 @@
 % Figure Fig6_abcd
 % Code to generate SUA examples V1 and V6
+% (revised version, plotting sorted raster)
 
 
 % load data
-addpath data
+addpath data CircStat2012a
 load('Fig6_abcd_data','tr', 'cfg', 'clu','wfm', 'templates', 'winv')
 
 % %%%% Examples for paper:
@@ -223,11 +224,14 @@ else
     trSel_sham = tr.thisLaserCond==0;
     trSel = trSel_yell;
     xlimPSTH = [-0.2 1.0];
+    [~ ,sortOriSel] = sort(tr.grat1direction,'descend');
+    sortOriSel(~trSel) = [];
 end
 
 plotBlueLaserTrials = false; % manual flag to plot laser stim. trials
 
-plotSpikeRaster( cellfun(@transpose,clu.spikeTimesEp(trSel,iCluInd),'UniformOutput',false),'PlotType','scatter');
+% plotSpikeRaster( cellfun(@transpose,clu.spikeTimesEp(trSel,iCluInd),'UniformOutput',false),'PlotType','scatter');
+plotSpikeRaster( cellfun(@transpose,clu.spikeTimesEp(sortOriSel,iCluInd),'UniformOutput',false),'PlotType','scatter');
 
 set(gca, 'YDir','normal')
 ylabel('Trial')

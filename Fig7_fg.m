@@ -5,7 +5,7 @@
 % load data
 addpath data
 load('Fig7_fg_data','tr', 'cfg', 'clu','wfm', 'templates', 'winv', 'timeLEDe', 'ledSignal')
-
+cfg.stimTime = 0.25;
 %% unwhiten all waveform templates and calculate amplitudes and depths
 templatesUnW = zeros(size(templates));
 for t = 1:size(templates,1)
@@ -187,18 +187,17 @@ ylim([-200 10])
 subplot(4,3,2) 
 cla
 
+
+    
 if contains(epocType, 'laserOn')
-    trSel_blue = tr.thisLaserCond==7001&tr.thisLaserSham==7010;
-    trSel_yell = tr.thisLaserCond==7000&tr.thisLaserSham==7010;
-    trSel_sham = tr.thisLaserCond==7001&tr.thisLaserSham==7011;
+    trSel_blue = tr.thisLaserCond==7001&tr.thisLaserSham==7010; 
+    trSel_yell = tr.thisLaserCond==7002&tr.thisLaserSham==7010; 
+    trSel_sham = tr.thisLaserCond==7001&tr.thisLaserSham==7011; 
+    trSel_noLaser   = tr.thisLaserCond==7000 & tr.thisLaserSham==7010; 
     trSel = trSel_blue;
     xlimPSTH = [-0.1 cfg.stimTime+0.1];
 else
-    trSel_blue = tr.thisLaserCond==7001;
-    trSel_yell = ismember(tr.thisLaserCond, [7002 7000]);
-    trSel_sham = tr.thisLaserCond==0;
-    trSel = trSel_yell;
-    xlimPSTH = [-0.2 1.0];
+    error('Invalid epoch type.')
 end
 
 plotBlueLaserTrials = false; % manual flag to plot laser stim. trials
@@ -256,8 +255,8 @@ else
 end
 
 try
-    % plot yellow laser, no sham
-    spkCell = clu.spikeTimesEp(trSel_yell,iCluInd);
+    % plot no laser, no sham
+    spkCell = clu.spikeTimesEp(trSel_noLaser,iCluInd);
     % ph2 = plotSpikePSTH(spkCell,msSmooth, -0.5, 1.5);
     ph2 = SU_PSTH(spkCell,msSmooth, -0.5, 1.5);
 
@@ -269,7 +268,7 @@ if contains(epocType, 'laserOn')
     % ph1 = plotSpikePSTH(spkCell,msSmooth, -0.5, 1.5);
     
     % set colors for laser psth
-    ph2.mainLine.Color = [230 148 0]/255;
+    ph2.mainLine.Color = [128 128 128]/255;
     ph2.edge(1).Color = ph2.mainLine.Color+(1-ph2.mainLine.Color)*0.55;
     ph2.edge(2).Color = ph2.mainLine.Color+(1-ph2.mainLine.Color)*0.55;
     ph2.patch.FaceColor = ph2.mainLine.Color;
@@ -280,7 +279,7 @@ if contains(epocType, 'laserOn')
     ph1.edge(2).Color = ph1.mainLine.Color+(1-ph1.mainLine.Color)*0.55;
     ph1.patch.FaceColor = ph1.mainLine.Color;
     
-    legend([ph1.mainLine; ph2.mainLine; ], [{'505 nm'}; {'495 nm'};],'location','northeast')
+    legend([ph1.mainLine; ph2.mainLine; ], [{'505 nm'}; {'no laser'};],'location','northeast')
     legend boxoff
 end
 

@@ -106,8 +106,8 @@ ax.ZAxis.FontSize = fontSi;
 
 colormap(inferno)
 
-xlabel('X-pos. (Â°)')
-ylabel('Y-pos. (Â°)')
+xlabel('X-pos. (°)')
+ylabel('Y-pos. (°)')
 zlabel('Electrode site')
 set(gcf,'color','w');
 
@@ -196,8 +196,8 @@ ax.ZAxis.FontSize = fontSi;
 
 colormap(inferno)
 
-xlabel('X-pos. (Â°)')
-ylabel('Y-pos. (Â°)')
+xlabel('X-pos. (°)')
+ylabel('Y-pos. (°)')
 zlabel('Electrode site')
 set(gcf,'color','w');
 

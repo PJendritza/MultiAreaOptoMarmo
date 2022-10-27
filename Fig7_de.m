@@ -187,16 +187,12 @@ cla
 
 if contains(epocType, 'laserOn')
     trSel_blue = tr.thisLaserCond==7001&tr.thisLaserSham==7010;
-    trSel_yell = tr.thisLaserCond==7000&tr.thisLaserSham==7010;
+    trSel_yell = tr.thisLaserCond==7002&tr.thisLaserSham==7010;
     trSel_sham = tr.thisLaserCond==7001&tr.thisLaserSham==7011;
     trSel = trSel_blue;
     xlimPSTH = [-0.1 cfg.stimTime+0.1];
 else
-    trSel_blue = tr.thisLaserCond==7001;
-    trSel_yell = ismember(tr.thisLaserCond, [7002 7000]);
-    trSel_sham = tr.thisLaserCond==0;
-    trSel = trSel_yell;
-    xlimPSTH = [-0.2 1.0];
+    error('Invalid epoch type.')
 end
 
 plotBlueLaserTrials = false; % manual flag to plot laser stim. trials
