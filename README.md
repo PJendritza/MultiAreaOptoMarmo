@@ -11,7 +11,7 @@ https://www.biorxiv.org/content/10.1101/2021.10.30.466578v1
 No installation required. All code should run in <1min.
 
 ## Instructions and demo
-Download the data from https://doi.org/10.5281/zenodo.5877753 into the "data" folder.
+Download the data from https://doi.org/10.5281/zenodo.7259686 into the "data" folder.
 
 Running the scripts named “Fig” will produce the corresponding figure from the manuscript.
 
