@@ -260,7 +260,7 @@ nHits1 = hitrate*nSacc{4};
 nMiss1 = round((1-hitrate)*nSacc{4});
 nFalseAlarms1 = round(farate*nSacc{1}); % integer required for bootstrapping
 nCorrectRejections1 = round((1-farate)*nSacc{1}); % integer required for bootstrapping
-[CI_dp_lowContVsCatch, CI_c_lowContVsCatch] = getdprimeBootCI(nHits1, nMiss1, nFalseAlarms1, nCorrectRejections1);
+[CI_dp_lowContVsCatch, CI_c_lowContVsCatch, bootData1] = getdprimeBootCI(nHits1, nMiss1, nFalseAlarms1, nCorrectRejections1);
 
 
 % low contrast + opto vs. opto only
@@ -273,14 +273,15 @@ nHits2 = hitrate*nSacc{5};
 nMiss2 = round((1-hitrate)*nSacc{5});
 nFalseAlarms2 = round(farate*nSacc{7}); % integer required for bootstrapping
 nCorrectRejections2 = round((1-farate)*nSacc{7}); % integer required for bootstrapping
-[CI_dp_lowContOptoVsOptoOnly, CI_c_lowContOptoVsOptoOnly] = getdprimeBootCI(nHits2, nMiss2, nFalseAlarms2, nCorrectRejections2);
+[CI_dp_lowContOptoVsOptoOnly, CI_c_lowContOptoVsOptoOnly, bootData2] = getdprimeBootCI(nHits2, nMiss2, nFalseAlarms2, nCorrectRejections2);
 
 figure
 subplot(1,2,1); hold on
-bar([1, 2],[dp_lowContVsCatch dp_lowContOptoVsOptoOnly])
-plot([1, 1 ], [CI_dp_lowContVsCatch(1), CI_dp_lowContVsCatch(2)], 'k')
-plot([2, 2 ], [CI_dp_lowContOptoVsOptoOnly(1), CI_dp_lowContOptoVsOptoOnly(2)], 'k')
+plotBootDistr(dp_lowContVsCatch, CI_dp_lowContVsCatch, 1, bootData1.dpBoot)
+plotBootDistr(dp_lowContOptoVsOptoOnly, CI_dp_lowContOptoVsOptoOnly, 2, bootData2.dpBoot)
 set(gca, 'XTick', [1 2]);
+xlim([0.6 2.6])
+ylim([0 1.8])
 set(gca,'xticklabel',{'Low contrast vs. Catch','Low contrast + opto vs. Opto only'})
 ylabel('d''')
 title({'Sensitivity';''})
@@ -290,10 +291,10 @@ box off
 xtickangle(45)
 
 subplot(1,2,2); hold on
-bar([1, 2],[c_lowContVsCatch c_lowContOptoVsOptoOnly])
-plot([1, 1 ], [CI_c_lowContVsCatch(1), CI_c_lowContVsCatch(2)], 'k')
-plot([2, 2 ], [CI_c_lowContOptoVsOptoOnly(1), CI_c_lowContOptoVsOptoOnly(2)], 'k')
+plotBootDistr(c_lowContVsCatch, CI_c_lowContVsCatch, 1, bootData1.cBoot)
+plotBootDistr(c_lowContOptoVsOptoOnly, CI_c_lowContOptoVsOptoOnly, 2, bootData2.cBoot)
 set(gca, 'XTick', [1 2]);
+xlim([0.6 2.6])
 set(gca,'xticklabel',{'Low contrast vs. Catch','Low contrast + opto vs. Opto only'})
 ylabel('c')
 title({'Response bias';''})
