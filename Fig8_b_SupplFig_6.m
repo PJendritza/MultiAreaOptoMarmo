@@ -1,4 +1,4 @@
-% Fig8_b
+% Fig8_b and Suppl.Fig_6
 % Code to generate behavioral analysis for detection task with optogenetic stimulation
 
 % load data
